@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+
+# Build directory
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs and test coverage
+*.log
+coverage/
+
+# Dependency directories
+.jest/
+.nyc_output/

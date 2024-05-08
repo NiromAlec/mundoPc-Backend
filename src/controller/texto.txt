@@ -1,0 +1,31 @@
+import { Request, Response } from 'express';
+import { createResponse } from '../util/ResponseJson';
+import { UsuarioBaseService } from '../services/UsuarioBase.service';
+import catchedAsync from '../middleware/catchedAsync';
+
+const obtenerUsuarios = async (_: Request, res: Response) => {
+  console.log('Buscando usuarios');
+  const users = await UsuarioBaseService.obtenerUsuariosService();
+  createResponse(200, true, 'Usuarios encontrados', res, users);
+};
+
+const obtenerUsuarioId = async (req: Request, res: Response) => {
+  const user = await UsuarioBaseService.obtenerUsuarioIdService(req.params.id);
+  createResponse(200, true, 'Usuario encontrado', res, user);
+};
+
+const crearUsuario = async (req: Request, res: Response) => {
+  const user = await UsuarioBaseService.crearUsuarioService(req.body);
+  createResponse(201, true, 'Usuario creado', res, user);
+};
+
+export default {
+  obtenerUsuarios: catchedAsync(obtenerUsuarios),
+  obtenerUsuarioId: catchedAsync(obtenerUsuarioId),
+  crearUsuario: catchedAsync(crearUsuario),
+};
+
+
+// export async function obtenerEstudiantesCurso (cursoId: string): Promise<Estudiante[]> {
+//     return await AppDataSource.manager.find(Estudiante, {cursoId: cursoId});
+// }
