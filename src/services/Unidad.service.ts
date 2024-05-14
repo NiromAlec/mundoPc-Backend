@@ -1,4 +1,4 @@
-import { actualizarUnidad, obtenerUnidadId, obtenerUnidades } from "../dao/Unidad.dao";
+import { actualizarUnidad, crearUnidad, obtenerUnidadId, obtenerUnidades } from "../dao/Unidad.dao";
 import { Unidad } from "../entities/Unidad";
 import { ErrorUnidadInexistente } from "../util/ErroresException";
 
@@ -11,6 +11,16 @@ export class UnidadService {
         const unidad = await obtenerUnidadId(id);
         if (!unidad) throw new ErrorUnidadInexistente();
         return unidad;
+    }
+
+    static async crearUnidadService(body: any): Promise<Unidad> {
+        const { nombre, descripcion, estado } = body;
+        const unit= new Unidad();
+        unit.nombre = nombre;
+        unit.descripcion = descripcion;
+        unit.estado = estado;
+        const unitCreated = await crearUnidad(unit);
+        return Unidad.retornarUnidad(unitCreated);
     }
 
     static async actualizarUnidadService(unidadId: string, data: any): Promise<any> {

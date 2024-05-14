@@ -64,6 +64,24 @@ export class ErrorUnidadInexistente extends ErrorCustomException {
     }
 }
 
+export class ErrorRespuestaInexistente extends ErrorCustomException {
+    constructor() {
+        super("La respuesta no existe", 404);
+    }
+}
+
+export class ErrorSeguimientoInexistente extends ErrorCustomException {
+    constructor() {
+        super("El seguimiento no existe", 404);
+    }
+}
+
+export class ErrorCursoInexistente extends ErrorCustomException {
+    constructor() {
+        super("El curso no existe", 404);
+    }
+}
+
 export class RegistroNoAutorizado extends ErrorCustomException {
     constructor() {
         super("No está autorizado para realizar esta acción", 403);

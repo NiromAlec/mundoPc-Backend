@@ -21,5 +21,9 @@ export class Unidad {
     curso: Curso;
 
     @OneToMany(() => Actividad, (actividad) => actividad.unidad)
-    actividades: Actividad[]
+    actividades: Actividad[];
+
+    static retornarUnidad(unitCreated: Unidad): any {
+        return JSON.parse(JSON.stringify(unitCreated));
+    }
 }

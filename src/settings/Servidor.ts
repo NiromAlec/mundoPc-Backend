@@ -7,6 +7,10 @@ import UsuarioRouter from "../routes/Usuario.router";
 import AuthRouter from "../routes/Auth.router";
 import ActividadRouter from "../routes/Actividad.router";
 import { errorHandler } from "../middleware/HandlerErr";
+import UnidadRouter from "../routes/Unidad.router";
+import RespuestaRouter from "../routes/Respuesta.router";
+import SeguimientoRouter from "../routes/Seguimiento.router";
+import CursoRouter from "../routes/Curso.router";
 
 
 class Servidor {
@@ -22,7 +26,7 @@ class Servidor {
         this.app.set('PORT', process.env.PORT ?? 3000);
         // this.app.use(cors())
         this.app.use(express.json());
-        this.app.use(express.urlencoded());
+        this.app.use(express.urlencoded({ extended: true }));
         
     }
     private iniciarRutas() {
@@ -30,6 +34,10 @@ class Servidor {
         this.app.use("/api/mundoPc/auth", AuthRouter);
         this.app.use("/api/mundoPc/usuario", UsuarioRouter);
         this.app.use("/api/mundoPc/actividad", ActividadRouter);
+        this.app.use("/api/mundoPc/unidad", UnidadRouter);
+        this.app.use("/api/mundoPc/respuesta", RespuestaRouter);
+        this.app.use("/api/mundoPc/seguimiento", SeguimientoRouter);
+        this.app.use("/api/mundoPc/curso", CursoRouter);
         this.app.use(errorHandler);
     }
 
